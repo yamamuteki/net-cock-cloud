@@ -2,16 +2,18 @@
 <table class="table">
     <tr>
         <th>#</th>
-        <th>名前</th>
-        <th>書き込み数</th>
-        <th>最終書き込み日時</th>
+        <th>ハンドルネーム</th>
+        <th>書込数</th>
+        <th>初回書込日時</th>
+        <th>最終書込日時</th>
     </tr>
     <% @authors.each do |author| %>
     <tr>
         <td><%= author.id %></td>
         <td><%= link_to(author.name, author) %></td>
         <td><%= author.articles.count %></td>
-        <td><%= author.articles.maximum(:posted_at) %></td>
+        <td><%= l(author.articles.minimum(:posted_at), format: :long) %></td>
+        <td><%= l(author.articles.maximum(:posted_at), format: :long) %></td>
     </tr>
     <% end %>
 </table>

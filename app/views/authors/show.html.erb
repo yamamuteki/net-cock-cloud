@@ -13,7 +13,7 @@
         <td><%= link_to(article.title, article) %></td>
         <td><%= link_to(article.parent.id, article.parent) if article.parent.present? %></td>
         <td><%= link_to(article.author.name, article.author) %></td>
-        <td><%= article.posted_at %></td>
+        <td><%= l(article.posted_at, format: :long) %></td>
     </tr>
     <% end %>
 </table>

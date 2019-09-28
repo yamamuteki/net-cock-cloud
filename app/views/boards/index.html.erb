@@ -3,17 +3,17 @@
     <tr>
         <th>#</th>
         <th>名前</th>
-        <th>書き込み数</th>
-        <th>初回書き込み日時</th>
-        <th>最終書き込み日時</th>
+        <th>書込数</th>
+        <th>初回書込日時</th>
+        <th>最終書込日時</th>
     </tr>
     <% @boards.each do |board| %>
     <tr>
         <td><%= board.id %></td>
         <td><%= link_to(board.title, board) %></td>
         <td class="text-right"><%= board.articles.count %></td>
-        <td><%= board.articles.minimum(:posted_at) %></td>
-        <td><%= board.articles.maximum(:posted_at) %></td>
+        <td><%= l(board.articles.minimum(:posted_at), format: :long) %></td>
+        <td><%= l(board.articles.maximum(:posted_at), format: :long) %></td>
     </tr>
     <% end %>
 </table>

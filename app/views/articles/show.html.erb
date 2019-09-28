@@ -6,7 +6,7 @@
         <div id="parent" class="card">
             <div class="card-body">
                 <span class="card-title"><%= @article.parent.title %></span>
-                <span class="card-subtitle"><%= @article.parent.posted_at %></span>
+                <span class="card-subtitle"><%= l(@article.parent.posted_at, format: :long) %></span>
                 <span class="card-subtitle"><%= link_to(@article.parent.author.name, @article.parent.author) %></span>
                 <pre class="card-text"><%= @article.parent.body %></pre>
             </div>
@@ -16,7 +16,7 @@
 <div class="card">
     <div class="card-body">
         <span class="card-title"><%= @article.title %></span>
-        <span class="card-subtitle"><%= @article.posted_at %></span>
+        <span class="card-subtitle"><%= l(@article.posted_at, format: :long) %></span>
         <span class="card-subtitle"><%= link_to(@article.author.name, @article.author) %></span>
         <pre class="card-text"><%= @article.body %></pre>
     </div>
