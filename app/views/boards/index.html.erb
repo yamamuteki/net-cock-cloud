@@ -10,7 +10,7 @@
     <tr>
         <td><%= board.id %></td>
         <td><%= link_to(board.title, board) %></td>
-        <td><%= board.articles.count %></td>
+        <td class="text-right"><%= board.articles.count %></td>
         <td><%= board.articles.maximum(:posted_at) %></td>
     </tr>
     <% end %>
