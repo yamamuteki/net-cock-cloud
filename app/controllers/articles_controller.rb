@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   def index
-    @articles = Article.all
+    q = "%#{params[:q]}%"
+    @articles = Article.where('title like ? or body like ?', q, q)
   end
 
   def show
