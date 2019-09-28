@@ -8,19 +8,23 @@
 
 Article.delete_all
 
-File.open("db/POPO_03.nck", mode = "rt:sjis:utf-8") do |f|
-    input = f.read
-    articles_text = input.split("[32m-	-	-	-	-	-	-	-	-[m\n")
-    puts board_title = articles_text.shift
-    articles_text.each do |article_text|
-        article_texts = article_text.split("\n") 
-        puts article_header = article_texts[0]
-        puts article_desc1 = article_texts[1]
-        puts article_desc2 = article_texts[2]
-        puts board_name = article_header.split[0].split('(')[0]
-        puts id = article_header.split[0].match(/\d+/)[0]
-        puts title = article_header.split(" ", 4)[3]
-        puts posted_at = DateTime.parse(article_header.split[1] + " " + article_header.split[2] + "+09:00")
-        Article.create(id: id, title: title, body: article_text, posted_at: posted_at) 
+files = ['db/POPO_03.nck', 'db/POPO_03.LOG', 'db/POPO_05.nck', 'db/POPO_05.LOG']
+
+files.each do |file|
+    File.open(file, mode = "rt:windows-31j:utf-8", invalid: :replace, undef: :replace) do |f|
+        input = f.read
+        articles_text = input.split("[32m-	-	-	-	-	-	-	-	-[m\n")
+        puts board_title = articles_text.shift
+        articles_text.each do |article_text|
+            article_texts = article_text.split("\n")
+            puts article_header = article_texts[0]
+            puts article_desc1 = article_texts[1]
+            puts article_desc2 = article_texts[2]
+            puts board_name = article_header.split[0].split('(')[0]
+            # puts id = article_header.split[0].match(/\d+/)[0]
+            puts title = article_header.split(" ", 4)[3]
+            puts posted_at = DateTime.parse(article_header.split[1] + " " + article_header.split[2] + "+09:00")
+            Article.create(title: title, body: article_text, posted_at: posted_at)
+        end
     end
 end

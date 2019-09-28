@@ -37,3 +37,4 @@ yarn-debug.log*
 # Ignore BBS log
 
 /db/*.nck
+/db/*.LOG
