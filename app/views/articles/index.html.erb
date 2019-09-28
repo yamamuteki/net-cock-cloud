@@ -1,0 +1,7 @@
+<% @articles.each do |article| %>
+  <%= article.title  %></br>
+  <%= article.posted_at  %></br>
+  <pre>
+    <%= article.body  %></br>
+  </pre>
+<% end %>
