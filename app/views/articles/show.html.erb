@@ -2,7 +2,7 @@
     <div class="card-body">
         <span class="card-title"><%= @article.title %></span>
         <span class="card-subtitle"><%= @article.posted_at %></span>
-        <span class="card-subtitle"><%= @article.author.name %></span>
+        <span class="card-subtitle"><%= link_to(@article.author.name, @article.author) %></span>
         <pre class="card-text"><%= @article.body %></pre>
     </div>
 </div>

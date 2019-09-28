@@ -1,4 +1,4 @@
-<h1>書き込み一覧</h1>
+<h1><%= @author.name %></h1>
 <table class="table">
     <tr>
         <th>#</th>
@@ -6,7 +6,7 @@
         <th>投稿者</th>
         <th>投稿日時</th>
     </tr>
-    <% @articles.each do |article| %>
+    <% @author.articles.each do |article| %>
     <tr>
         <td><%= article.id %></td>
         <td><%= link_to(article.title, article) %></td>

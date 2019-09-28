@@ -10,7 +10,7 @@
     <tr>
         <td><%= article.id %></td>
         <td><%= link_to(article.title, article) %></td>
-        <td><%= article.author.name %></td>
+        <td><%= link_to(article.author.name, article.author) %></td>
         <td><%= article.posted_at %></td>
     </tr>
     <% end %>

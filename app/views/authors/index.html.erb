@@ -1,0 +1,17 @@
+<h1>投稿者一覧</h1>
+<table class="table">
+    <tr>
+        <th>#</th>
+        <th>名前</th>
+        <th>書き込み数</th>
+        <th>最終書き込み日時</th>
+    </tr>
+    <% @authors.each do |author| %>
+    <tr>
+        <td><%= author.id %></td>
+        <td><%= link_to(author.name, author) %></td>
+        <td><%= author.articles.count %></td>
+        <td><%= author.articles.maximum(:posted_at) %></td>
+    </tr>
+    <% end %>
+</table>
