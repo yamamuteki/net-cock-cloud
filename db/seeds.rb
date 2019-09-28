@@ -10,7 +10,7 @@ Board.delete_all
 Author.delete_all
 Article.delete_all
 
-files = ['db/POPO_03.nck', 'db/POPO_03.LOG', 'db/POPO_05.nck', 'db/POPO_05.LOG']
+files = Dir.glob('db/*.nck').sort + Dir.glob('db/*.LOG').sort
 
 files.each do |file|
     File.open(file, mode = "rt:cp932:utf-8", invalid: :replace, undef: :replace) do |f|
@@ -29,6 +29,8 @@ files.each do |file|
             puts posted_at = DateTime.parse(article_header.split[1] + " " + article_header.split[2] + "+09:00")
             puts parent_no = if article_desc1.start_with?(" <")
                 article_desc1.match(/(\d+):/)[1]
+            else
+                nil
             end
             puts author_name = if article_desc1.start_with?("  ")
                 article_desc1.match(/:(.*)/)[1]
@@ -37,7 +39,7 @@ files.each do |file|
             end
             author = Author.find_or_create_by(name: author_name)
             parent = articles[parent_no]
-            article = Article.create(title: title, body: article_text, posted_at: posted_at, parent: parent, author: author, board: board)
+            article = Article.create!(title: title, body: article_text, posted_at: posted_at, parent: parent, author: author, board: board)
             articles[article_no] = article if article_no
         end
     end
