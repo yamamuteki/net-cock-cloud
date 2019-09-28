@@ -1,11 +1,9 @@
 <% @articles.each do |article| %>
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title"><%= article.title  %></h5>
-      <h6 class="card-subtitle mb-2 text-muted"><%= article.posted_at  %></h6>
-      <p class="card-text">
-        <pre><%= article.body  %></pre>
-      </p>
+      <span class="card-title"><%= article.title %></span>
+      <span class="card-subtitle"><%= article.posted_at %></span>
+      <span class="card-subtitle"><%= article.author.name %></span>
     </div>
   </div>
 <% end %>
