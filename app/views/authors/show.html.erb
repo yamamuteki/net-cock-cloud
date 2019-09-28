@@ -3,6 +3,7 @@
     <tr>
         <th>#</th>
         <th>タイトル</th>
+        <th>親#</th>
         <th>投稿者</th>
         <th>投稿日時</th>
     </tr>
@@ -10,6 +11,7 @@
     <tr>
         <td><%= article.id %></td>
         <td><%= link_to(article.title, article) %></td>
+        <td><%= link_to(article.parent.id, article.parent) if article.parent.present? %></td>
         <td><%= link_to(article.author.name, article.author) %></td>
         <td><%= article.posted_at %></td>
     </tr>

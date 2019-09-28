@@ -1,3 +1,18 @@
+<% if @article.parent.present? %>
+    <%= link_to('#', data: { toggle: 'collapse', target: '#parent' }, class: 'btn btn-info btn-sm') do %>
+        親記事を表示
+    <% end %>
+    <div id="parent" class="collapse">
+        <div id="parent" class="card">
+            <div class="card-body">
+                <span class="card-title"><%= @article.parent.title %></span>
+                <span class="card-subtitle"><%= @article.parent.posted_at %></span>
+                <span class="card-subtitle"><%= link_to(@article.parent.author.name, @article.parent.author) %></span>
+                <pre class="card-text"><%= @article.parent.body %></pre>
+            </div>
+        </div>
+    </div>
+<% end %>
 <div class="card">
     <div class="card-body">
         <span class="card-title"><%= @article.title %></span>

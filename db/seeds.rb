@@ -18,21 +18,27 @@ files.each do |file|
         articles_text = input.split("[32m-	-	-	-	-	-	-	-	-[m\n")
         puts board_title = articles_text.shift.strip
         board = Board.find_or_create_by(title: board_title)
+        articles = {}
         articles_text.each do |article_text|
             article_texts = article_text.split("\n")
             puts article_header = article_texts[0]
             puts article_desc1 = article_texts[1].rstrip
             puts article_desc2 = article_texts[2].rstrip
-            puts board_name = article_header.split[0].split('(')[0]
+            puts article_no = article_header.split[0].match(/(\d+)\//)[1] rescue article_no = nil
             puts title = article_header.split(" ", 4)[3]
             puts posted_at = DateTime.parse(article_header.split[1] + " " + article_header.split[2] + "+09:00")
+            puts parent_no = if article_desc1.start_with?(" <")
+                article_desc1.match(/(\d+):/)[1]
+            end
             puts author_name = if article_desc1.start_with?("  ")
                 article_desc1.match(/:(.*)/)[1]
             else
                 article_desc2.match(/:(.*)/)[1]
             end
             author = Author.find_or_create_by(name: author_name)
-            Article.create(title: title, body: article_text, posted_at: posted_at, author: author, board: board)
+            parent = articles[parent_no]
+            article = Article.create(title: title, body: article_text, posted_at: posted_at, parent: parent, author: author, board: board)
+            articles[article_no] = article if article_no
         end
     end
 end
