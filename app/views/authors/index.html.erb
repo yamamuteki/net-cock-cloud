@@ -11,7 +11,7 @@
     <tr>
         <td><%= author.id %></td>
         <td><%= link_to(author.name, author) %></td>
-        <td><%= author.articles.count %></td>
+        <td class="text-right"><%= author.articles.count %></td>
         <td><%= l(author.articles.minimum(:posted_at), format: :long) %></td>
         <td><%= l(author.articles.maximum(:posted_at), format: :long) %></td>
     </tr>
