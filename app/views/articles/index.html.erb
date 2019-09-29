@@ -12,10 +12,18 @@
     <tr>
         <td><%= article.id %></td>
         <td><%= link_to(article.board.title[0..15], article.board) %></td>
-        <td><%= link_to(article.title, article) %></td>
+        <td class="result">
+            <%= link_to(article.title, article) %>
+            <pre><%= article.body %></pre>
+        </td>
         <td><%= link_to(article.parent.id, article.parent) if article.parent.present? %></td>
         <td><%= link_to(article.author.name, article.author) %></td>
         <td><%= l(article.posted_at, format: :long) %></td>
     </tr>
     <% end %>
 </table>
+<script>
+    $(function(){
+        $(".result").highlight($("#q").val());
+    });
+</script>
